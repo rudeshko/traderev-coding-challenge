@@ -1,13 +1,18 @@
 <template>
-    <div id="wrapper">
+    <div class="container component app">
         <div class="heading">Dima Rudeshko - TradeRev Coding Challenge</div>
         <div class="body" v-if="photos != null">
+            Show:
             <select v-model="per_page">
                 <option v-for="(per_page, index) in per_page_list" :key="index" :value="per_page">{{per_page}}</option>
             </select>
+            <hr />
 
             <gallery :photos="photos"></gallery>
             <pagination></pagination>
+
+            <hr />
+            <div class="footer">View source on <a href="https://bitbucket.org/rudeshko/traderev-gallery/src/master/" target="_blank">Bitbucket</a></div>
         </div>
         <div v-else class="loading">
             <i class="fas fa-cog fa-spin"></i>
@@ -25,7 +30,7 @@ export default {
     data: () => ({
         photos: null,
         page: 1,
-        per_page: 10,
+        per_page: 20,
         per_page_list: [10, 20, 30]
     }),
     components: {
@@ -33,7 +38,7 @@ export default {
         Pagination
     },
     mounted() {
-        this.loadPhotos(1, 10);
+        this.loadPhotos(1, this.per_page);
     },
     methods: {
         loadPhotos(page, per_page) {
@@ -58,5 +63,4 @@ export default {
 
 <style lang="sass">
 @import '../scss/app.scss'
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 </style>
