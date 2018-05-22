@@ -9,3 +9,9 @@
     -moz-box-shadow: $value;
     box-shadow: $value;
 }
+
+@mixin column-count($value) {
+    -webkit-column-count: $value;
+    -moz-column-count: $value;
+    column-count: $value;
+}

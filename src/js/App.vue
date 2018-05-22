@@ -2,14 +2,7 @@
     <div class="container component app">
         <div class="heading">Dima Rudeshko - TradeRev Coding Challenge</div>
         <div class="body" v-if="photos != null">
-            Show:
-            <select v-model="per_page">
-                <option v-for="(per_page, index) in per_page_list" :key="index" :value="per_page">{{per_page}}</option>
-            </select>
-            <hr />
-
-            <gallery :photos="photos"></gallery>
-            <pagination></pagination>
+            <gallery :photos="photos" :total="total" @getPhotos="getPhotosEvent"></gallery>
 
             <hr />
             <div class="footer">View source on <a href="https://bitbucket.org/rudeshko/traderev-gallery/src/master/" target="_blank">Bitbucket</a></div>
@@ -23,39 +16,32 @@
 <script>
 import unsplash from './unsplash.js';
 import Gallery from './Gallery.vue';
-import Pagination from './Pagination.vue';
 
 export default {
     name: "app",
     data: () => ({
         photos: null,
-        page: 1,
-        per_page: 20,
-        per_page_list: [10, 20, 30]
+        total: 0
     }),
     components: {
-        Gallery,
-        Pagination
+        Gallery
     },
     mounted() {
-        this.loadPhotos(1, this.per_page);
+        this.getPhotos(1, 20);
     },
     methods: {
-        loadPhotos(page, per_page) {
+        getPhotos(page, perPage) {
             let component = this;
-            unsplash.getPhotos(page, per_page).then(photos => {
-                component.photos = photos;
+            unsplash.getPhotos(page, perPage).then(photos => {
+                component.photos = photos.data;
+                component.total = photos.headers['x-total'];
             }).catch(e => {
                 console.log(e);
             });
-        }
-    },
-    watch: {
-        //Can't use arrow functions, because `this` context will be lost
-        "per_page": function (oldVal, newVal) {
-            if (newVal != oldVal) {
-                this.loadPhotos(1, this.per_page);
-            }
+        },
+
+        getPhotosEvent(data) {
+            this.getPhotos(data.page, data.perPage);
         }
     }
 }
