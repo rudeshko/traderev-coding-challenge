@@ -1,0 +1,45 @@
+@media only screen and (min-width: 1024px) {
+    .component.gallery .card-columns {
+        @include column-count(4);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .component.app .heading {
+        font-size: 23px;
+    }
+    .component.gallery {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .component {
+        &.gallery {
+            .popup {
+                .actions {
+                    &.goPrev {
+                        left: 2%;
+                    }
+                    &.goNext {
+                        right: 2%;
+                    }
+                }
+                .preview {
+                    width: 96%;
+                }
+                .about {
+                    padding: 10px 2%;
+                }
+            }
+            .card-columns {
+                padding: 0px 50px;
+            }
+        }
+        &.app {
+            .heading {
+                font-size: 18px;
+            }
+        }
+    }
+}

@@ -20,7 +20,6 @@
     }
     &.gallery {
         .card-columns {
-            @include column-count(4); //TODO: fix this for responsive
             .card {
                 @include border-radius(7px);
                 border: 0px;
@@ -43,26 +42,43 @@
                 height: 30px;
                 line-height: 30px;
                 padding: 0px 7px;
-                background: #eee;
+                background: #7bcdff;
+                color: #ffffff;
                 @include border-radius(4px);
                 text-align: center;
                 float: left;
+                &:hover {
+                    cursor: pointer;
+                    background: #007ecc;
+                }
                 &:not(:last-child) {
                     margin: 0px 10px 10px 0px;
                 }
                 &.active {
-                    font-weight: bold;
+                    cursor: initial;
+                    background: #007ecc;
+                }
+                &.dots {
+                    cursor: initial;
+                    background: #fff;
+                    color: inherit;
+                }
+                &.actions{
+                    font-size: 10px;
                 }
             }
         }
         .popup {
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: #ffffff;
             position: fixed;
             top: 0px;
             left: 0px;
+            &:hover .actions, &:focus .actions {
+                display: block;
+            }
             .actions {
                 width: 50px;
                 height: 50px;
@@ -70,18 +86,22 @@
                 position: absolute;
                 top: calc(50% - 25px);
                 font-size: 40px;
-                &:hover {}
+                display: none;
+                text-shadow: 1px 1px 0px #000;
+                &:hover, &:focus {
+                    cursor: pointer;
+                }
                 &.goPrev {
-                    left: 0px;
+                    left: 20px;
                 }
                 &.goNext {
-                    right: 0px;
+                    right: 20px;
                 }
             }
             .preview {
-                width: calc(100% - 120px);
-                height: calc(100% - 270px);
-                margin: 100px auto 0px;
+                width: calc(100% - 150px);
+                height: calc(100% - 215px);
+                margin: 60px auto 0px;
                 img {
                     max-width: 100%;
                     max-height: 100%;
@@ -95,7 +115,7 @@
                 height: 150px;
                 margin: 0px auto;
                 color: #fff;
-                padding: 20px;
+                padding: 20px 100px;
                 font-size: 13px;
                 position: absolute;
                 bottom: 0px;
@@ -117,3 +137,5 @@
         }
     }
 }
+
+@import './responsive.scss';

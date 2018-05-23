@@ -17,6 +17,10 @@
 import unsplash from './unsplash.js';
 import Gallery from './Gallery.vue';
 
+/**
+ * This is the main app component that's responsible for the main layout
+ * The only action it currently performs is calls a gallery component
+ */
 export default {
     name: "app",
     data: () => ({
@@ -27,9 +31,17 @@ export default {
         Gallery
     },
     mounted() {
+        /**
+         * Get initial 20 photos
+         */
         this.getPhotos(1, 20);
     },
     methods: {
+        /**
+         * @description Gets a list of photos from Unsplash
+         * @param {*} page Page number of the list
+         * @param {*} perPage Photos per page
+         */
         getPhotos(page, perPage) {
             let component = this;
             unsplash.getPhotos(page, perPage).then(photos => {
@@ -40,6 +52,11 @@ export default {
             });
         },
 
+        /**
+         * @description Even trigger - When child component(Gallery) requests to
+         * get new photos, this component is triggered.
+         * @param {*} data Includes Page number and Per Page number
+         */
         getPhotosEvent(data) {
             this.getPhotos(data.page, data.perPage);
         }
