@@ -1,5 +1,5 @@
 <template>
-    <div class="pages">
+    <div class="pages" id="pagination">
         <div v-if="currentPage > 1" class="page actions" @click="go(1)"><i class="fas fa-angle-double-left"></i></div>
         <div v-if="currentPage > 1" class="page actions" @click="go(currentPage - 1)"><i class="fas fa-angle-left"></i></div>
 

@@ -5,7 +5,7 @@
             <gallery :photos="photos" :total="total" @getPhotos="getPhotosEvent"></gallery>
 
             <hr />
-            <div class="footer">View source on <a href="https://bitbucket.org/rudeshko/traderev-gallery/src/master/" target="_blank">Bitbucket</a></div>
+            <div class="footer">&copy; <a href="http://dima.rudeshko.net/" target="_blank">Dima Rudeshko</a> | View source on <a href="https://bitbucket.org/rudeshko/traderev-gallery/src/master/" target="_blank">Bitbucket</a></div>
         </div>
         <div v-else class="loading">
             <i class="fas fa-cog fa-spin"></i>

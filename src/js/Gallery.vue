@@ -86,6 +86,7 @@ export default {
             //It goes to the anchor of the photo so that when the popup is dismissed,
             //the photo that was viewed stays on screen.
             window.location.href = ("#photo_" + this.photos[index].id);
+
             this.popup = {
                 index: index,
                 photo: this.photos[index],
@@ -121,6 +122,8 @@ export default {
                     page: --this.currentPage,
                     perPage: this.perPage
                 });
+                //Workaround due to dynamic anchor loading - this way it will always show the last item
+                window.location.href = "#pagination";
             }
         },
 
@@ -139,6 +142,7 @@ export default {
                     page: ++this.currentPage,
                     perPage: this.perPage
                 });
+                window.location.href = "#top";
             }
         },
 
@@ -175,13 +179,11 @@ export default {
         /**
          * When the list of photos changes, this component needs to go back to top,
          * show the new popup in case it was changed by the popup in the first place
+         * TODO: Doesn't work here, not going to the top on next page
          */
         "photos": function (oldVal, newVal) {
             if (this.popup.newIndex != null) {
                 this.showPopup(this.popup.newIndex);
-            } else {
-                //Go back to top
-                window.location.href = "#top";
             }
         },
     }
