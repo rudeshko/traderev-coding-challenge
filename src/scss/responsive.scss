@@ -5,11 +5,24 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .component.app .heading {
-        font-size: 23px;
-    }
-    .component.gallery {
-        font-size: 15px;
+    .component {
+        &.gallery {
+            font-size: 15px;
+            .popup {
+                .preview {
+                    height: calc(100% - 185px);
+                }
+                .about {
+                    height: 120px;
+                    padding: 10px 2%;
+                }
+            }
+        }
+        &.app {
+            .heading {
+                font-size: 23px;
+            }
+        }
     }
 }
 
@@ -27,9 +40,6 @@
                 }
                 .preview {
                     width: 96%;
-                }
-                .about {
-                    padding: 10px 2%;
                 }
             }
             .card-columns {

@@ -179,9 +179,10 @@ export default {
         "photos": function (oldVal, newVal) {
             if (this.popup.newIndex != null) {
                 this.showPopup(this.popup.newIndex);
+            } else {
+                //Go back to top
+                window.location.href = "#top";
             }
-
-            window.location.href = "#top";
         },
     }
 }
