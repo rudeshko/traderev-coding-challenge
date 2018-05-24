@@ -40,6 +40,7 @@ export default {
             if (page != "..." && this.currentPage != page) {
                 //It must let the parent know to get the new page
                 this.$emit("getPage", page);
+                window.location.href = "#top";
             }
         },
 
