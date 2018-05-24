@@ -71,5 +71,5 @@ And run the build with a simple web server from *NodeJS*
 npm start
 ```
 
-You can acces the application from one of the URLs provided by the command above:
+You can access the application from one of the URLs provided by the command above:
 e.g. `http://127.0.0.1:8080`
